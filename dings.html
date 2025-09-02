@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OSM Map with Static Rating & Comments</title>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <style>
+    #map { height: 100vh; }
+    .popup-content { font-size: 14px; }
+    .comment-entry { border-top: 1px solid #ddd; padding: 4px 0; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <script>
+    var map = L.map('map').setView([53.46133325937855, 9.9784285843935], 13);
+    L.tileLayer('https://tile.thunderforest.com/pioneer/{z}/{x}/{y}.png?apikey=07b85746e46a481480b8b8f60de9ca77').addTo(map);
+
+    // 🔹 Load saved data (if exists)
+    let savedData = JSON.parse(localStorage.getItem("markerData") || "{}");
+
+    // 🔹 Function to add a marker with static rating & comments
+    function addCustomMarker(lat, lng, placeId, placeName, rating, comments) {
+      // Save data locally
+      savedData[placeId] = { rating, comments };
+      localStorage.setItem("markerData", JSON.stringify(savedData));
+
+      // Build popup HTML
+      const popupHTML = `
+        <div class="popup-content">
+          <h3>${placeName}</h3>
+          <p><strong>Rating:</strong> ⭐ ${rating}</p>
+          <div><strong>Anmerkungen:</strong></div>
+          <div>
+            ${comments.map(c => `<div class="comment-entry">${c}</div>`).join("")}
+          </div>
+        </div>
+      `;
+
+      // Add marker
+      L.marker([lat, lng]).addTo(map).bindPopup(popupHTML);
+    }
+
+    // ✅ Add markers (rating + comments are set directly here)
+    addCustomMarker(53.461018385575066, 9.969242125513917, "place1", "TU Bib", 4, [
+      "++ Erreichbarkeit",
+      "++ Infrastruktur",
+      "+ Atmosphäre"
+    ]);
+
+    addCustomMarker(48.79016888042201, 9.18306769643055, "place2", "Stadtbibliothek Stuttgart", 3, [
+      "++ hübsch",
+      "++ Infrastruktur",
+      "- kein WLAN ohne Ausweis",
+      "-- laut"
+    ]);
+
+    addCustomMarker(53.564917025798046, 9.985264872623267, "place3", "Staats- und Universitätsbibliothek Hamburg Carl von Ossietzky", 4, [
+      "+++ extra stiller Arbeitssaal",
+      "++ Infrastruktur",
+      "+ Erreichbarkeit",
+      "- Toiletten :("
+    ]);
+
+  </script>
+</body>
+</html>
+
