@@ -1,71 +1,481 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>OSM Map with Static Rating & Comments</title>
-  <meta charset="utf-8"/>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <style>
-    #map { height: 100vh; }
-    .popup-content { font-size: 14px; }
-    .comment-entry { border-top: 1px solid #ddd; padding: 4px 0; }
+    html, body {
+   margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+    header {
+      background-color: black;
+      color: aliceblue;
+      text-align: center;
+      padding: 30px; 
+    }
+
+    section {
+      flex:1;
+      display: flex;
+      
+    }
+
+    nav {
+      background-color: aqua;
+      color: black;
+      width: 20%;
+      padding: 30px;
+    }
+
+    article {
+      background-color: bisque;
+      color: black;
+      width: 70%;
+      padding: 30px;
+      display: flex;
+      gap: 20px; 
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    article div {
+      flex: 0 0 auto;
+      width: auto;
+      height: auto;
+
+    }
+    aside{
+      background-color: white;
+      color: black;
+      width: 30%;
+      padding: 30px;
+    }
+
+    footer{
+      background-color: gray;
+      color: antiquewhite;
+      padding: 30px;
+    }
+
+    p {
+      color: darkslategrey;
+    }
+
+    button {
+      margin-top: 10px;
+    }
+
+    tr, th {border: 1px solid black;}
+    td {border: 2px solid black;}
+
+
+
+    .recipe {
+    background-color: beige;
+    color: black;
+    max-width: fit-content;
+    border: 2px solid black;  
+    margin: 20px;
+    padding: 20px;
+    }
+    .recipe-header {
+      display: flex;
+      align-items: center; 
+      gap: 30px;       
+    }
+
+    .recipe-header h2 {
+      margin: 0;   
+    }
+
   </style>
 </head>
 <body>
-  <div id="map"></div>
+  <header>
+    <h1>Wocheneinkauf (frfr)</h1>
+  </header>
+
+  <section>
+    <nav>
+      this is a section????
+      <br>
+      hier kommt irgendwann ein links zu den overleaf rezepten hin
+    </nav>
+
+    <article>
+      <div class="recipe">
+          <div class="recipe-header">
+            <h2>Flammkuchen</h2>
+            <button type="button" onclick="addItem('Flammkuchen')">+</button>
+          </div>
+        <p>Klassiker</p>
+        <table id="Flammkuchen">
+            <tr>
+              <th>2</th>
+              <th>Portionen</th>
+              <th>Flammkuchen</th>
+            </tr>          
+            <tr>
+              <th>Amount</th>
+              <th>Unit</th>
+              <th>Item</th>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>EL</td>
+              <td>Öl</td>
+            </tr>
+            <tr>
+              <td>125</td>
+              <td>ml</td>
+              <td>Wasser</td>
+            </tr>
+            <tr>
+              <td>250</td>
+              <td>g</td>
+              <td>Mehl</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td></td>
+              <td>Zwiebel(n)</td>
+            </tr>
+            <tr>
+              <td>200</td>
+              <td>g</td>
+              <td>Schmand</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Becher</td>
+              <td>Crème double</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td>Salz und Pfeffer</td>
+            </tr>
+            <tr>
+              <td>100</td>
+              <td>g</td>
+              <td>Speckwürfel</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td>Schnittlauchröllchen</td>
+            </tr>
+          </table>
+      </div>
+      <div class="recipe">
+        <div class="recipe-header">
+          <h2>Blätterteig Pide</h2>
+          <button type="button" onclick="addItem('Pide')">+</button>
+        </div>
+      <p>Holy shit, actual banger</p>
+        <table id="Pide">
+            <tr>
+              <th>1</th>
+              <th>Portion</th>
+              <th>Pide</th>
+            </tr>    
+            <tr>
+              <th>Amount</th>
+              <th>Unit</th>
+              <th>Item</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Stange</td>
+              <td>Lauch</td>
+            </tr>
+            <tr>
+              <td>50</td>
+              <td>ml</td>
+              <td>Brühe</td>
+            </tr>
+            <tr>
+              <td>100</td>
+              <td>g</td>
+              <td>Coccktailtomaten</td>
+            </tr>
+            <tr>
+              <td>100</td>
+              <td>g</td>
+              <td>Feta</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td></td>
+              <td>Ei</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Packung</td>
+              <td>Blätterteig</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Glas</td>
+              <td>Peperoni</td>
+            </tr>
+          </table>
+
+      </div>
+      <div class="recipe">
+        <div class="recipe-header">
+           <h2>Maultaschen</h2>
+           <button type="button" onclick="addItem('Maultaschen')">+</button>
+        </div>
+        <p>you wont believe it</p>
+          <table id="Maultaschen">
+            <tr>
+              <th>1</th>
+              <th>Portion</th>
+              <th>Maultaschen</th>
+            </tr>    
+            <tr>
+              <th>Amount</th>
+              <th>Unit</th>
+              <th>Item</th>
+            </tr>
+            <tr>
+              <td>500</td>
+              <td>ml</td>
+              <td>Brühe</td>
+            </tr>
+              <td>1</td>
+              <td>Packung </td>
+              <td>Maultaschen</td>
+            </tr>
+          </table>
+
+      </div>
+      <div class="recipe">
+          <div class="recipe-header">
+            <h2>Gemüselasagne</h2>
+            <button type="button" onclick="addItem('Lasagne')">+</button>
+          </div>
+        <p>supilecker</p>
+          <table id="Lasagne">
+            <tr>
+              <th>3</th>
+              <th>Portionen</th>
+              <th>Lasagne</th>
+            </tr>    
+          <tr>
+            <th>Amount</th>
+            <th>Unit</th>
+            <th>Item</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td></td>
+            <td>Zwiebel(n)</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td></td>
+            <td>Möhre(n)</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>große</td>
+            <td>Zucchini</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>kleine</td>
+            <td>Aubergine(n)</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Stange/n</td>
+            <td>Staudensellerie</td>
+          </tr>
+          <tr>
+            <td>etwas</td>
+            <td></td>
+            <td>Olivenöl</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td>Salz und Pfeffer, schwarzer</td>
+          </tr>
+          <tr>
+            <td>200</td>
+            <td>g</td>
+            <td>Schmand</td>
+          </tr>
+          <tr>
+            <td>250</td>
+            <td>g</td>
+            <td>geriebener Käse</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td></td>
+            <td>Lasagneplatte(n)</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td></td>
+            <td>Knoblauchzehe(n)</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>EL</td>
+            <td>Olivenöl</td>
+          </tr>
+          <tr>
+            <td>500</td>
+            <td>ml</td>
+            <td>passierte Tomaten</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>EL</td>
+            <td>Tomatenmark</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Handvoll</td>
+            <td>Kräuter</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td>Salz und Pfeffer</td>
+          </tr>
+        </table>
+      </div>
+      <div class="recipe">
+          <div class="recipe-header">
+            <h2>TK-Pizza</h2>
+            <button type="button" onclick="addItem('TKPizza')">+</button>
+          </div>
+        <p>fühl ich tbh</p>
+          <table id="TKPizza">
+            <tr>
+              <th>1</th>
+              <th>Portion</th>
+              <th>TK-Pizza</th>
+            </tr>    
+          <tr>
+            <th>Amount</th>
+            <th>Unit</th>
+            <th>Item</th>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td></td>
+            <td>Pizzen</td>
+          </tr>
+        </table>
+      </div>
+      <div class="recipe">
+          <h2> a tomato</h2>
+          <p> you have to buy tomato</p>
+      </div>
+      <div class="recipe">
+          <h2> a tomato</h2>
+          <p> you have to buy tomato</p>
+      </div>
+      <p id="trest">how the hell</p>
+      <button type="button" onclick="testing()">BWOAH</button>
+    </article>
+    
+    
+    
+    <aside>
+      <h2>missing from Inventory</h2>
+      <table id="Listchen" >
+        <tr>
+          <th>Amount</th>
+          <th>Unit</th>
+          <th>Item</th>
+      </table>
+      <h3>Anzahl Portionen</h3>
+      <table id="ListPortions">
+        <tr>
+          <td>0</td>
+          <td>Portionen</td>
+        </tr>
+      </table>
+      <h3>Gerichte</h3>
+        <ul id="dishes">
+
+        </ul>  
+      
+    </aside>
+  </section>
+
+  <footer>
+    <p>important impressum</p>
+  </footer>  
 
   <script>
-    var map = L.map('map').setView([53.46133325937855, 9.9784285843935], 13);
-    L.tileLayer('https://tile.thunderforest.com/transport/{z}/{x}/{y}.png?apikey=07b85746e46a481480b8b8f60de9ca77').addTo(map);
+    function testing(){
+      document.getElementById("trest").style.color="red";
+    }
+    function addToPortions(listId){
 
-    // 🔹 Load saved data (if exists)
-    let savedData = JSON.parse(localStorage.getItem("markerData") || "{}");
-
-    // 🔹 Function to add a marker with static rating & comments
-    function addCustomMarker(lat, lng, placeId, placeName, rating, comments) {
-      // Save data locally
-      savedData[placeId] = { rating, comments };
-      localStorage.setItem("markerData", JSON.stringify(savedData));
-
-      // Build popup HTML
-      const popupHTML = `
-        <div class="popup-content">
-          <h3>${placeName}</h3>
-          <p><strong>Rating:</strong> ⭐ ${rating}</p>
-          <div><strong>Anmerkungen:</strong></div>
-          <div>
-            ${comments.map(c => `<div class="comment-entry">${c}</div>`).join("")}
-          </div>
-        </div>
-      `;
-
-      // Add marker
-      L.marker([lat, lng]).addTo(map).bindPopup(popupHTML);
+          let additional = Number(document.getElementById(listId).rows[0].cells[0].innerText);
+          let Portiontable = document.getElementById("ListPortions");
+          let current = Number(Portiontable.rows[0].cells[0].innerText);
+          Portiontable.rows[0].cells[0].innerText = current + additional;
     }
 
-    // ✅ Add markers (rating + comments are set directly here)
-    addCustomMarker(53.461018385575066, 9.969242125513917, "place1", "TU Bib", 4, [
-      "++ Erreichbarkeit",
-      "++ Infrastruktur",
-      "+ Atmosphäre"
-    ]);
+    function addToDishes(listId){
+      let table = document.getElementById(listId);
+      let dish = table.rows[0].cells[2].innerText;
+      let summary = document.getElementById("dishes");
+      let li = document.createElement("li");
+        li.innerText = dish;
+        summary.appendChild(li);
+    }
 
-    addCustomMarker(48.79016888042201, 9.18306769643055, "place2", "Stadtbibliothek Stuttgart", 3, [
-      "++ hübsch",
-      "++ Infrastruktur",
-      "- kein WLAN ohne Ausweis",
-      "-- laut"
-    ]);
+    function addItem(listId){
+      addToPortions(listId);
+      addToDishes(listId);
+      
+      let table = document.getElementById("Listchen");
+      let tableOfChoice = document.getElementById(listId);
 
-    addCustomMarker(53.564917025798046, 9.985264872623267, "place3", "Staats- und Universitätsbibliothek Hamburg Carl von Ossietzky", 4, [
-      "+++ extra stiller Arbeitssaal",
-      "++ Infrastruktur",
-      "+ Erreichbarkeit",
-      "- Toiletten :("
-    ]);
+      for( let it=2; it<tableOfChoice.rows.length;it++){
+        let found=false;
+        let chosenRow = tableOfChoice.rows[it];
+        let chosenCell = chosenRow.cells;
+        let amount = chosenCell[0].innerText;
+        let unit = chosenCell[1].innerText;
+        let item = chosenCell[2].innerText;
+   
 
+        for(let i = 0; i<table.rows.length; i++){
+          let row = table.rows[i];          
+          let cell = row.cells[2];
+          if(cell.innerText == item){
+              row.cells[0].innerText = Number(row.cells[0].innerText) + Number(amount);
+            found = true;
+            break;
+          }
+        }
+        if(!found){
+        let newRow = table.insertRow();
+        let cell1 = newRow.insertCell(0);
+        let cell2 = newRow.insertCell(1);
+        let cell3 = newRow.insertCell(2);
+        cell1.innerHTML=amount;
+        cell2.innerHTML=unit;
+        cell3.innerText=item;
+        }
+      }
+    }
   </script>
 </body>
 </html>
+
 
 
