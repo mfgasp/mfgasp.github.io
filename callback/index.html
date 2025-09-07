@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>OAuth Callback</title>
+</head>
+<body>
+  <p>Finishing login…</p>
+  <script>
+    // Parse the token from the URL hash
+    const hash = new URLSearchParams(window.location.hash.substring(1));
+    const token = hash.get("access_token");
+
+    if (token) {
+      localStorage.setItem("simplenote_token", token);
+      // Redirect back to your main app
+      window.location.href = "https://mfgasp.github.io/";
+    } else {
+      document.body.innerHTML = "<p>No token found in URL.</p>";
+    }
+  </script>
+</body>
+</html>
