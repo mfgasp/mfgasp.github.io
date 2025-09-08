@@ -5,18 +5,14 @@
   <title>OAuth Callback</title>
 </head>
 <body>
-  <p>Finishing login…</p>
+  <h2>Callback page works!</h2>
   <script>
-    // Parse the token from the URL hash
+    // Example: parse token from URL
     const hash = new URLSearchParams(window.location.hash.substring(1));
     const token = hash.get("access_token");
-
     if (token) {
       localStorage.setItem("simplenote_token", token);
-      // Redirect back to your main app
       window.location.href = "https://mfgasp.github.io/";
-    } else {
-      document.body.innerHTML = "<p>No token found in URL.</p>";
     }
   </script>
 </body>
