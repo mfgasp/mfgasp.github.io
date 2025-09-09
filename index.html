@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>klitzekleine Einkaufshilfe</title>
   <style>
     html, body {
    margin: 0;
@@ -10,7 +11,7 @@
     flex-direction: column;
   }
     header {
-      background-color: black;
+      background-color: #5F7161;
       color: aliceblue;
       text-align: center;
       padding: 30px; 
@@ -23,14 +24,14 @@
     }
 
     nav {
-      background-color: aqua;
+      background-color: #97AD9C;
       color: black;
       width: 20%;
       padding: 30px;
     }
 
     article {
-      background-color: bisque;
+      background-color: #EFEAD8;
       color: black;
       width: 70%;
       padding: 30px;
@@ -43,10 +44,10 @@
       flex: 0 0 auto;
       width: auto;
       height: auto;
-
+      
     }
     aside{
-      background-color: white;
+      background-color: #97AD9C;
       color: black;
       width: 30%;
       padding: 30px;
@@ -59,11 +60,16 @@
     }
 
     p {
-      color: darkslategrey;
+      color: black;
     }
 
     button {
       margin-top: 10px;
+      border-radius: 8px;
+      border: 2px solid black;
+      background-color:#89a29b;
+      color: black;
+      font-weight: bold;
     }
 
     tr, th {border: 1px solid black;}
@@ -72,7 +78,7 @@
 
 
     .recipe {
-    background-color: beige;
+    background-color: #D0C9C0;
     color: black;
     max-width: fit-content;
     border: 2px solid black;  
@@ -98,9 +104,24 @@
 
   <section>
     <nav>
-      this is a section????
+      this is a fast section????
       <br>
       hier kommt irgendwann ein links zu den overleaf rezepten hin
+      <br>
+      <button onclick="scrollToRecipe('Flammkuchen')">Go to Flammkuchen</button>
+      <br>
+      <button onclick="scrollToRecipe('Pide')">Go to Pide</button>
+      <br>
+      <button onclick="scrollToRecipe('Maultaschen')">Go to Maultaschen</button>
+      <br>
+      <button onclick="scrollToRecipe('Gemüselasagne')">Go to Gemüselasagne</button>
+      <br>
+      <button onclick="scrollToRecipe('TKPizza')">Go to TK-Pizza</button>
+      <br>
+      <button onclick="scrollToRecipe('Baguettes')">Go to Baguettes</button>
+      <br>
+      <button onclick="scrollToRecipe('Enchiladas')">Go to Enchiladas</button>
+      <br>
     </nav>
 
     <article>
@@ -376,6 +397,125 @@
         </table>
       </div>
       <div class="recipe">
+        <div class="recipe-header">
+          <h2>6 Baguettes</h2>
+          <button type="button" onclick="addItem('Baguettes')">+</button>
+        </div>
+        <p>me when brunch</p>
+        <table id="Baguettes">
+          <tr>
+            <th>0</th>
+            <th>Portion</th>
+            <th>Baguettes</th>
+          </tr>
+          <tr>
+            <th>Amount</th>
+            <th>Unit</th>
+            <th>Item</th>
+          </tr>
+          <tr>
+            <td>950</td>
+            <td>g</td>
+            <td>Flour</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>full tsp</td>
+            <td>Salt</td>
+          </tr>
+          <tr>
+            <td>3/4</td>
+            <td>tsp</td>
+            <td>Dry yeast</td>
+          </tr>
+          <tr>
+            <td>700</td>
+            <td>ml</td>
+            <td>Room temperature water (-5%)</td>
+          </tr>
+        </table>
+      </div>
+      <div class="recipe">
+        <div class="recipe-header">
+          <h2> Enchiladas</h2>
+          <button type="button" onclick="addItem('Enchiladas')">+</button>
+        </div>
+        <p>yummy yummy in my tummy</p>
+        <table id="Enchiladas">
+          <tr>
+            <th>2</th>
+            <th>Portionen</th>
+            <th>Enchiladas</th>
+          </tr>
+          <tr>
+            <th>Amount</th>
+            <th>Unit</th>
+            <th>Item</th>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>kleine</td>
+            <td>Tortilla(s) / Wraps</td>
+          </tr>
+          <tr>
+            <td>200</td>
+            <td>g</td>
+            <td>Frischkäse</td>
+          </tr>
+          <tr>
+            <td>250</td>
+            <td>g</td>
+            <td>Joghurt (0,1 % Fett)</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Bund</td>
+            <td>Frühlingszwiebel(n)</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Dose</td>
+            <td>Mais</td>
+          </tr>
+          <tr>
+            <td>250</td>
+            <td>g</td>
+            <td>Tomate(n)</td>
+          </tr>
+          <tr>
+            <td>120</td>
+            <td>g</td>
+            <td>Käse (z. B. Emmentaler), gerieben</td>
+          </tr>
+          <tr>
+            <td>etwas</td>
+            <td></td>
+            <td>Petersilie, klein gehackt</td>
+          </tr>
+          <tr>
+            <td>etwas</td>
+            <td></td>
+            <td>Butter (für die Form)</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td>Salz und Pfeffer</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td>Chilipulver</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td>Tabasco</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="recipe">
           <h2> a tomato</h2>
           <p> you have to buy tomato</p>
       </div>
@@ -391,6 +531,9 @@
     
     <aside>
       <h2>missing from Inventory</h2>
+      <button onclick="copyListchen()">Copy Ingredients to Clipboard</button>
+      <br>
+      <br>
       <table id="Listchen" >
         <tr>
           <th>Amount</th>
@@ -473,6 +616,29 @@
         }
       }
     }
+    function copyListchen() {
+  let table = document.getElementById("Listchen");
+  let rows = Array.from(table.rows).slice(1); 
+
+  let items = rows.map(row => {
+    let amount = row.cells[0].innerText;
+    let unit   = row.cells[1].innerText;
+    let item   = row.cells[2].innerText;
+    return `${amount} ${unit} ${item}`.trim();
+  }).join("\n");
+
+  navigator.clipboard.writeText(items).then(() => {
+    alert("List copied");
+  });
+}
+function scrollToRecipe(id) {
+  const recipe = document.getElementById(id);
+  if (recipe) {
+    recipe.scrollIntoView({ behavior: "smooth", inline: "center" });
+  }
+}
+
+
   </script>
 </body>
 </html>
