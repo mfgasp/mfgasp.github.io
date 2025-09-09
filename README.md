@@ -1,2 +1,2 @@
 # mfgasp.github.io
-a smol rating map for BA workplaces
+a smol helper for my weekly groceryyy shoppings
